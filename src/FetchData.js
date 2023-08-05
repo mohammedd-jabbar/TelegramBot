@@ -139,9 +139,7 @@ async function CatchUserInput(text) {
       };
     }
   } catch (error) {
-    console.log(
-      `ببورە، هەڵەیەک روویدا. تکایە دووبارە هەوڵبدەوە\n\n Sorry, an error occurred in fetching. Please try again`
-    );
+    console.log(error.message);
   }
 }
 

@@ -73,6 +73,16 @@ Please send your message in two separate messages.`;
     // if word true then send it to CatchUserInput in another file to give us results
     if (sentence) {
       CatchUserInput(sentence).then((response) => {
+        if (
+          response.kurdishText === "undefined" ||
+          response.kurdishText === undefined
+        ) {
+          ctx.reply(
+            `ببورە، هەڵەیەک روویدا. تکایە دووبارە هەوڵبدەوە\n\n Sorry, an error occurred in sending. Please try again`
+          );
+          return null;
+        }
+
         if (response.kurdishText) {
           // if we have kurdishText then send translate because if there is kurdishText it mean we have sentence to translate
           const endTime = new Date(); // when result end then we stop time to send to user how it take to send result to user
