@@ -38,9 +38,7 @@ bot.on("text", (ctx) => {
     let sentence = `${ctx.message.text}`;
 
     // bannded words
-    const bannedWords = [
-      "hack",
-    ];
+    const bannedWords = ["hack"];
 
     // split sentence to word to check if there is any banned words
     for (let word of sentence.split(" ")) {
