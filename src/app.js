@@ -73,10 +73,7 @@ Please send your message in two separate messages.`;
     // if word true then send it to CatchUserInput in another file to give us results
     if (sentence) {
       CatchUserInput(sentence).then((response) => {
-        if (
-          response.kurdishText === "undefined" ||
-          response.kurdishText === undefined
-        ) {
+        if (!response) {
           ctx.reply(
             `ببورە، هەڵەیەک روویدا. تکایە دووبارە هەوڵبدەوە\n\n Sorry, an error occurred in sending. Please try again`
           );

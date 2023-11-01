@@ -4,4 +4,9 @@
 # ignore ALL files in ANY directory named temp
 temp/ 
 
+.env.local
+
+*.env
+.env
+
 node_modules

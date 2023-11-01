@@ -2,10 +2,11 @@ const { Translate } = require("@google-cloud/translate").v2;
 const axios = require("axios");
 const cheerio = require("cheerio"); // to scrap dictionary
 const iso = require("iso-639-1"); // to change 'es' to English
+require("dotenv").config();
 
 // google translate api key
 const translate = new Translate({
-  key: "AIzaSyDM0rhgQyZczGMKnHus9nC6AABkIdNOTrU",
+  key: process.env.GOGGLE_API,
 });
 
 // this function is for translating text
@@ -33,14 +34,14 @@ async function CatchUserInput(text) {
       `https://www.ldoceonline.com/dictionary/${responseText}`
     ); // we get this url with user word
     const html = response.data; // and then we get html file of it
-    const $ = cheerio.load(html); // now we gotte html codes for this word
+    const $ = cheerio.load(html); // now we get html codes for this word
 
     // and we do this to get those in this html we got
     const defs = [];
     const examples = [];
     const opps = [];
 
-    // they send definiton into this class
+    // they send definition into this class
     $(".DEF").each((i, def) => {
       if (i < 3) {
         const text = $(def).text().trim(); // we split definitions and push it for defs array
@@ -131,7 +132,7 @@ async function CatchUserInput(text) {
           kurdishText: text,
           wordLang: "English",
         };
-      } // then we say if this statment not work then do this we cannot do it like 'else' because if we do it we got error now we say if nothing true in if statment above then you should do this
+      } // then we say if this statement not work then do this we cannot do it like 'else' because if we do it we got error now we say if nothing true in if statement above then you should do this
       return {
         englishText: text,
         kurdishText: res,
@@ -139,7 +140,7 @@ async function CatchUserInput(text) {
       };
     }
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 }
 
